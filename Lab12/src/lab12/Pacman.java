@@ -66,6 +66,7 @@ public class Pacman {
 	*/
 	private void backtrack(Node end){
 		// TODO for assignment12
+		
 	}
 
 	/** writes the solution to file */
@@ -156,7 +157,31 @@ public class Pacman {
 		// 0. Initialize an ArrayList of nodes
 		ArrayList<Node> neighbors = new ArrayList<Node>();
 		//make sure that the neighbors are inbounds
-		north = new Node(currentNode.row, currentNode.col+1, 'b'); //this is wrong... fix it 
+		if(!maze[currentNode.col][currentNode.row-1].visited && !maze[currentNode.col][currentNode.row-1].isWall()) {
+			north = maze[currentNode.col][currentNode.row-1];
+			north.parent = currentNode;
+			neighbors.add(north);
+			 
+		}
+		if(!maze[currentNode.col][currentNode.row+1].visited && !maze[currentNode.col][currentNode.row+1].isWall()) {
+			south = maze[currentNode.col][currentNode.row-1];
+			south.parent = currentNode;
+			neighbors.add(south);
+		}
+		if(!maze[currentNode.col-1][currentNode.row].visited && !maze[currentNode.col-1][currentNode.row].isWall()) {
+			west = maze[currentNode.col-1][currentNode.row];
+			west.parent = currentNode;
+			neighbors.add(west);
+		}
+		if(!maze[currentNode.col+1][currentNode.row].visited && !maze[currentNode.col+1][currentNode.row].isWall()) {
+			east = maze[currentNode.col+1][currentNode.row];
+			east.parent = currentNode;
+			neighbors.add(east);
+		}
+		
+		return neighbors;
+		 
+		 
 		
 
 		// 1. Inspect the north neighbor
@@ -167,7 +192,7 @@ public class Pacman {
 
 		// 4. Inspect the east neighbor
 
-		return null;
+		
 	}
 
 	/** Pacman uses BFS strategy to solve the maze */
